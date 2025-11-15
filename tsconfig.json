@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "useDefineForClassFields": true,
+    "module": "nodenext",
+    "lib": [
+      "ESNext",
+      "DOM",
+      "DOM.Iterable",
+    ],
+    "skipLibCheck": true,
+    /* Bundler mode */
+    "moduleResolution": "nodenext",
+    "allowImportingTsExtensions": true,
+    "moduleDetection": "force",
+    "emitDeclarationOnly": true,
+    "declaration": true,
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true,
+    "sourceMap": true,
+    "sourceRoot": "./src",
+    "noEmit": true
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+
+  ]
+}
