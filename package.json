@@ -1,7 +1,7 @@
 {
-  "name": "readable-stream-with-resolvers",
+  "name": "readable-stream-with-safe-resolvers",
   "version": "1.0.0",
-  "description": "",
+  "description": "A safe, resolver-style wrapper for ReadableStream, allowing external push, close, and error operations safely.",
   "type": "module",
   "main": "./index.js",
   "exports": {
@@ -25,13 +25,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/juner/readable-stream-with-resolvers.git"
+    "url": "git+https://github.com/juner/readable-stream-with-safe-resolvers.git"
   },
   "keywords": [
-    "Web",
-    "Web Stream",
-    "withResolvers",
-    "ReadableStream"
+    "readable-stream",
+    "stream",
+    "deferred",
+    "resolver",
+    "safe",
+    "pushable"
   ],
   "author": "juners",
   "license": "MIT",
