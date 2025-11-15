@@ -1,0 +1,1 @@
+export type ReadableStream<T> = import("stream/web").ReadableStream<T>;
