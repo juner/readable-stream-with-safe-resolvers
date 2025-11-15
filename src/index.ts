@@ -1,1 +1,1 @@
-export * from "./withResolvers.ts";
+export * from "./withSafeResolvers.ts";

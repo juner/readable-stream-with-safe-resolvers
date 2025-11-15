@@ -1,9 +1,9 @@
 import { describe, test } from "vitest";
-import { withResolvers } from "./withResolvers.ts";
+import { withSafeResolvers } from "./withSafeResolvers.ts";
 
 describe("simple use", () => {
   test.concurrent("enqueue and close", async ({ expect }) => {
-    const { enqueue, stream, close } = withResolvers<number>();
+    const { enqueue, stream, close } = withSafeResolvers<number>();
     const executed = (async () => {
       enqueue(1);
       await timeout(100);
@@ -18,7 +18,7 @@ describe("simple use", () => {
     await expect(executed).resolves.toBeUndefined();
   });
   test.concurrent("error", async ({expect}) => {
-    const { enqueue, stream, error } = withResolvers<number>();
+    const { enqueue, stream, error } = withSafeResolvers<number>();
     const executed = (async () => {
       enqueue(3);
       await timeout(100);
@@ -28,7 +28,7 @@ describe("simple use", () => {
     await expect(executed).resolves.toBeUndefined();
   });
   test.concurrent("for of", async ({expect}) => {
-    const { enqueue, stream } = withResolvers<number>();
+    const { enqueue, stream } = withSafeResolvers<number>();
     const executed = (async () => {
       enqueue(4);
       await timeout(100);
@@ -41,13 +41,13 @@ describe("simple use", () => {
       expect(num).toEqual(4);
     }
     await expect(executed).resolves.toBeUndefined();
-  })
+  });
 });
 
 describe("safe stop call", () => {
 
   test.concurrent("enqueue", async ({ expect }) => {
-    const { enqueue, stream, close } = withResolvers<number>();
+    const { enqueue, stream, close } = withSafeResolvers<number>();
     const executed = (async () => {
       enqueue(1);
       await timeout(100);
@@ -61,7 +61,7 @@ describe("safe stop call", () => {
     await expect(executed).resolves.toBeUndefined();
   });
   test.concurrent("close", async ({ expect }) => {
-    const { stream, close } = withResolvers<number>();
+    const { stream, close } = withSafeResolvers<number>();
     const executed = (async () => {
       close();
       await timeout(100);
@@ -71,7 +71,7 @@ describe("safe stop call", () => {
     await expect(executed).resolves.toBeUndefined();
   });
   test.concurrent("error", async ({ expect }) => {
-    const { enqueue, stream, close, error } = withResolvers<number>();
+    const { enqueue, stream, close, error } = withSafeResolvers<number>();
     const executed = (async () => {
       enqueue(4);
       close();
