@@ -13,11 +13,11 @@ describe("simple use", () => {
     })();
     await expect(Array.fromAsync(stream)).resolves.toEqual([
       1,
-      2
+      2,
     ]);
     await expect(executed).resolves.toBeUndefined();
   });
-  test.concurrent("error", async ({expect}) => {
+  test.concurrent("error", async ({ expect }) => {
     const { enqueue, stream, error } = withSafeResolvers<number>();
     const executed = (async () => {
       enqueue(3);
@@ -27,7 +27,7 @@ describe("simple use", () => {
     await expect(Array.fromAsync(stream)).rejects.toThrowError("error");
     await expect(executed).resolves.toBeUndefined();
   });
-  test.concurrent("for of", async ({expect}) => {
+  test.concurrent("for of", async ({ expect }) => {
     const { enqueue, stream } = withSafeResolvers<number>();
     const executed = (async () => {
       enqueue(4);
@@ -45,7 +45,6 @@ describe("simple use", () => {
 });
 
 describe("safe stop call", () => {
-
   test.concurrent("enqueue", async ({ expect }) => {
     const { enqueue, stream, close } = withSafeResolvers<number>();
     const executed = (async () => {
@@ -56,7 +55,7 @@ describe("safe stop call", () => {
       enqueue(2);
     })();
     await expect(Array.fromAsync(stream)).resolves.toEqual([
-      1
+      1,
     ]);
     await expect(executed).resolves.toBeUndefined();
   });
@@ -90,7 +89,8 @@ async function timeout(milliseconds?: number, options?: {
   options?.signal?.addEventListener("abort", abort);
   try {
     return await promise;
-  } finally {
+  }
+  finally {
     options?.signal?.removeEventListener("abort", abort);
   }
   function abort() {
