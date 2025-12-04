@@ -3,6 +3,6 @@
  * source implementation. Not exposed publicly.
  */
 export type InternalControllerState<T> = {
-  controller: ReadableStreamDefaultController<T>;
-  finalized: boolean;
+  controller: ReadableStreamDefaultController<T>
+  finalized: boolean
 };

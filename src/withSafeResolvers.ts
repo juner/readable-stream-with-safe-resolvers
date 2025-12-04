@@ -33,7 +33,7 @@ export function withSafeResolvers<T = unknown>(): ReadableStreamSafeResolver<T> 
   };
 
   const stream = new globalThis.ReadableStream<T>(
-    new DeferredSource<T>(state)
+    new DeferredSource<T>(state),
   ) as ReadableStream<T>;
 
   return {
@@ -43,5 +43,3 @@ export function withSafeResolvers<T = unknown>(): ReadableStreamSafeResolver<T> 
     error: error.bind(state),
   };
 }
-
-

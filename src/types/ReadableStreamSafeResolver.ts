@@ -12,8 +12,8 @@ import type { ReadableStream } from "./ReadableStream.ts";
  * - `error(reason)` — Terminate the stream with an error. Ignored if already finalized.
  */
 export type ReadableStreamSafeResolver<T> = {
-  stream: ReadableStream<T>;
-  enqueue: (chunk: T) => void;
-  close: () => void;
-  error: (reason: unknown) => void;
+  stream: ReadableStream<T>
+  enqueue: (chunk: T) => void
+  close: () => void
+  error: (reason: unknown) => void
 };
