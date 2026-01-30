@@ -1,6 +1,6 @@
 {
   "name": "readable-stream-with-safe-resolvers",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A safe, resolver-style wrapper for ReadableStream, allowing external push, close, and error operations safely.",
   "type": "module",
   "main": "./index.js",

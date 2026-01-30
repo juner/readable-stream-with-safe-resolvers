@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.0.0] - 2026-01-30
+
+### Added
+
+- Added `withResolvers<T>()`, a low-level (unsafe) resolver that directly
+  controls a `ReadableStream` without internal safety checks.
+
+### Changed
+
+- **Breaking:** `withSafeResolvers<T>()` methods now return `boolean`
+  indicating whether the operation was applied.
+- Operations after stream finalization can now be explicitly detected
+  instead of being silent no-ops.
+
+---
+
 ## [1.0.0] - 2025-11-15
 
 ### Added
@@ -35,3 +51,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ---
 
 [1.0.0]: https://github.com/juner/readable-stream-with-safe-resolvers/releases/tag/v1.0.0
+[2.0.0]: https://github.com/juner/readable-stream-with-safe-resolvers/releases/tag/v2.0.0
