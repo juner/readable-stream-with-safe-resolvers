@@ -6,14 +6,28 @@ import type { ReadableStream } from "./ReadableStream.ts";
  * common errors by automatically ignoring any operation after the stream
  * has been finalized (closed, errored, or canceled).
  *
- * Provided methods:
- * - `enqueue(chunk)` — Push a new chunk into the stream. Ignored after the stream is finalized.
- * - `close()` — Close the stream gracefully. Ignored if already finalized.
- * - `error(reason)` — Terminate the stream with an error. Ignored if already finalized.
+ * Each operation returns a boolean indicating whether it was successfully
+ * applied:
+ * - `true`  — the operation was accepted and applied
+ * - `false` — the stream was already finalized and the operation was ignored
  */
 export type ReadableStreamSafeResolver<T> = {
   stream: ReadableStream<T>
-  enqueue: (chunk: T) => void
-  close: () => void
-  error: (reason: unknown) => void
+  /**
+   * Push a new chunk into the stream.
+   * @param chunk
+   * @returns `false` if the stream has already been finalized.
+   */
+  enqueue: (chunk: T) => boolean
+  /**
+   * Close the stream gracefully.
+   * @returns `false` if the stream is already finalized.
+   */
+  close: () => boolean
+  /**
+   * Terminate the stream with an error.
+   * @param reason
+   * @returns `false` if the stream is already finalized.
+   */
+  error: (reason: unknown) => boolean
 };

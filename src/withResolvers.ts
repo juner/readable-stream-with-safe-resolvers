@@ -1,6 +1,6 @@
-import { close, enqueue, error } from "./withSafeResolvers/index.ts";
+import { close, enqueue, error } from "./withResolvers/index.ts";
 import { DeferredSource } from "./DeferredSource.ts";
-import type { ReadableStream, ReadableStreamSafeResolver, InternalControllerState } from "./types/index.ts";
+import type { ReadableStream, ReadableStreamResolver, InternalControllerState } from "./types/index.ts";
 
 /**
  * Creates a `ReadableStream` together with a safe set of resolver-like
@@ -24,7 +24,7 @@ import type { ReadableStream, ReadableStreamSafeResolver, InternalControllerStat
  * console.log(await Array.fromAsync(stream)); // → [1, 2]
  * ```
  */
-export function withSafeResolvers<T = unknown>(): ReadableStreamSafeResolver<T> {
+export function withResolvers<T = unknown>(): ReadableStreamResolver<T> {
   const state: InternalControllerState<T> = {
     controller: null!,
     finalized: false,
@@ -39,5 +39,6 @@ export function withSafeResolvers<T = unknown>(): ReadableStreamSafeResolver<T> 
     enqueue: enqueue.bind(state),
     close: close.bind(state),
     error: error.bind(state),
+    get completed() { return state.finalized; },
   };
 }

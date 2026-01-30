@@ -5,11 +5,11 @@ describe("simple use", () => {
   test.concurrent("enqueue and close", async ({ expect }) => {
     const { enqueue, stream, close } = withSafeResolvers<number>();
     const executed = (async () => {
-      enqueue(1);
+      expect(enqueue(1)).toBe(true);
       await timeout(100);
-      enqueue(2);
+      expect(enqueue(2)).toBe(true);
       await timeout(100);
-      close();
+      expect(close()).toBe(true);
     })();
     await expect(Array.fromAsync(stream)).resolves.toEqual([
       1,
@@ -20,9 +20,9 @@ describe("simple use", () => {
   test.concurrent("error", async ({ expect }) => {
     const { enqueue, stream, error } = withSafeResolvers<number>();
     const executed = (async () => {
-      enqueue(3);
+      expect(enqueue(3)).toBe(true);
       await timeout(100);
-      error(new Error("error"));
+      expect(error(new Error("error"))).toBe(true);
     })();
     await expect(Array.fromAsync(stream)).rejects.toThrowError("error");
     await expect(executed).resolves.toBeUndefined();
@@ -30,11 +30,11 @@ describe("simple use", () => {
   test.concurrent("for of", async ({ expect }) => {
     const { enqueue, stream } = withSafeResolvers<number>();
     const executed = (async () => {
-      enqueue(4);
+      expect(enqueue(4)).toBe(true);
       await timeout(100);
-      enqueue(5);
+      expect(enqueue(5)).toBe(true);
       await timeout(100);
-      enqueue(6);
+      expect(enqueue(6)).toBe(false);
     })();
     for await (const num of stream) {
       if (num >= 5) break;
@@ -48,11 +48,11 @@ describe("safe stop call", () => {
   test.concurrent("enqueue", async ({ expect }) => {
     const { enqueue, stream, close } = withSafeResolvers<number>();
     const executed = (async () => {
-      enqueue(1);
+      expect(enqueue(1)).toBe(true);
       await timeout(100);
-      close();
+      expect(close()).toBe(true);
       await timeout(100);
-      enqueue(2);
+      expect(enqueue(2)).toBe(false);
     })();
     await expect(Array.fromAsync(stream)).resolves.toEqual([
       1,
@@ -62,9 +62,9 @@ describe("safe stop call", () => {
   test.concurrent("close", async ({ expect }) => {
     const { stream, close } = withSafeResolvers<number>();
     const executed = (async () => {
-      close();
+      expect(close()).toBe(true);
       await timeout(100);
-      close();
+      expect(close()).toBe(false);
     })();
     await expect(Array.fromAsync(stream)).resolves.toEqual([]);
     await expect(executed).resolves.toBeUndefined();
@@ -72,9 +72,9 @@ describe("safe stop call", () => {
   test.concurrent("error", async ({ expect }) => {
     const { enqueue, stream, close, error } = withSafeResolvers<number>();
     const executed = (async () => {
-      enqueue(4);
-      close();
-      error(new Error("error"));
+      expect(enqueue(4)).toBe(true);
+      expect(close()).toBe(true);
+      expect(error(new Error("error"))).toBe(false);
     })();
     await expect(Array.fromAsync(stream)).resolves.toEqual([4]);
     await expect(executed).resolves.toBeUndefined();
