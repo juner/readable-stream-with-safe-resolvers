@@ -9,6 +9,7 @@
       "DOM.Iterable",
     ],
     "skipLibCheck": true,
+    "verbatimModuleSyntax": true,
     /* Bundler mode */
     "moduleResolution": "nodenext",
     "allowImportingTsExtensions": true,
