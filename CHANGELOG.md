@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.0.1] - 2026-11-16
+
+### Changed
+
+- Simplified package distribution to pure ESM and lowered `engines.node` requirement to `>=22`.
+- Restricted published package contents via `files` field in `package.json`.
+
+### Fixed
+
+- Removed dependency on `import("stream/web")` in `.d.ts` so types work in environments without `@types/node`.
+- Fixed relative import extensions in emitted `.d.ts` files to use `.js` instead of `.ts`.
+- Fixed CJS type resolution issue (`FalseESM`) by unifying exports as ESM.
+- Fixed broken `homepage` and `bugs` URLs in `package.json`.
+- Replaced non-ASCII characters in JSDoc comments and corrected `withResolvers` JSDoc description.
+
+---
+
 ## [2.0.0] - 2026-01-30
 
 ### Added
@@ -52,3 +69,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 [1.0.0]: https://github.com/juner/readable-stream-with-safe-resolvers/releases/tag/v1.0.0
 [2.0.0]: https://github.com/juner/readable-stream-with-safe-resolvers/releases/tag/v2.0.0
+[2.0.1]: https://github.com/juner/readable-stream-with-safe-resolvers/releases/tag/v2.0.1
