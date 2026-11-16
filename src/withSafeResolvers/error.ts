@@ -1,4 +1,4 @@
-import type { InternalControllerState } from "../types/InternalControllerState.ts";
+import type { InternalControllerState } from "../types/InternalControllerState.js";
 
 /**
  * Errors the stream and marks it as finished.

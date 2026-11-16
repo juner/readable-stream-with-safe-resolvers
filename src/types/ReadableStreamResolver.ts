@@ -1,4 +1,4 @@
-import type { ReadableStream } from "./ReadableStream.ts";
+import type { ReadableStream } from "./ReadableStream.js";
 /**
  * A low-level resolver-style handle for externally controlling a `ReadableStream`.
  *
@@ -12,13 +12,13 @@ import type { ReadableStream } from "./ReadableStream.ts";
  * operations are performed only while the stream is active.
  *
  * Provided properties:
- * - `stream` — The underlying `ReadableStream`.
- * - `completed` — Indicates whether the stream has been finalized.
+ * - `stream` - The underlying `ReadableStream`.
+ * - `completed` - Indicates whether the stream has been finalized.
  *
  * Provided methods:
- * - `enqueue(chunk)` — Push a new chunk into the stream.
- * - `close()` — Close the stream gracefully.
- * - `error(reason)` — Terminate the stream with an error.
+ * - `enqueue(chunk)` - Push a new chunk into the stream.
+ * - `close()` - Close the stream gracefully.
+ * - `error(reason)` - Terminate the stream with an error.
  */
 export type ReadableStreamResolver<T> = {
   stream: ReadableStream<T>

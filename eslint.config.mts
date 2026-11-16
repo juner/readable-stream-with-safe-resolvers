@@ -9,7 +9,7 @@ import stylistic from "@stylistic/eslint-plugin";
 export default defineConfig([
   {
     ignores: [
-      `dist/**.*`,
+      `dist/**`,
     ],
   },
   { files: [`**/*.{js,mjs,cjs,ts,mts,cts}`], plugins: { js }, extends: [`js/recommended`] },
@@ -18,11 +18,11 @@ export default defineConfig([
     files: [`**/*.{js,mjs,cjs,ts,mts,cts}`],
     plugins: {
       "@stylistic": stylistic,
-      "tseslint": tseslint,
+      "@typescript-eslint": tseslint.plugin,
     },
     extends: [
-      "@stylistic/recommended",
-      "tseslint/recommended",
+      stylistic.configs.recommended,
+      tseslint.configs.recommended,
     ],
     rules: {
       "semi": [`error`],
@@ -50,7 +50,9 @@ export default defineConfig([
     languageOptions: {
       allowTrailingCommas: true,
     },
-    extends: ["json/recommended"],
+    extends: [
+      json.configs.recommended,
+    ],
   },
   { files: [`**/*.md`], plugins: { markdown }, language: `markdown/gfm`, extends: [`markdown/recommended`] },
 ]);

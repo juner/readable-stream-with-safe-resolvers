@@ -1,3 +1,3 @@
-export * from "./close.ts";
-export * from "./enqueue.ts";
-export * from "./error.ts";
+export * from "./close.js";
+export * from "./enqueue.js";
+export * from "./error.js";

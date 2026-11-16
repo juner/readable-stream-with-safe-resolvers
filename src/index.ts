@@ -1,2 +1,2 @@
-export * from "./withSafeResolvers.ts";
-export * from "./withResolvers.ts";
+export * from "./withSafeResolvers.js";
+export * from "./withResolvers.js";

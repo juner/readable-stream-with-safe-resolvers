@@ -1,4 +1,4 @@
-export type * from "./InternalControllerState.ts";
-export type * from "./ReadableStream.ts";
-export type * from "./ReadableStreamSafeResolver.ts";
-export type * from "./ReadableStreamResolver.ts";
+export type * from "./InternalControllerState.js";
+export type * from "./ReadableStream.js";
+export type * from "./ReadableStreamSafeResolver.js";
+export type * from "./ReadableStreamResolver.js";

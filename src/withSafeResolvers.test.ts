@@ -1,5 +1,5 @@
 import { describe, test } from "vitest";
-import { withSafeResolvers } from "./withSafeResolvers.ts";
+import { withSafeResolvers } from "./withSafeResolvers.js";
 
 describe("simple use", () => {
   test.concurrent("enqueue and close", async ({ expect }) => {

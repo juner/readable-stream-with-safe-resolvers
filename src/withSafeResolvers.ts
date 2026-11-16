@@ -1,6 +1,6 @@
-import { close, enqueue, error } from "./withSafeResolvers/index.ts";
-import { DeferredSource } from "./DeferredSource.ts";
-import type { ReadableStream, ReadableStreamSafeResolver, InternalControllerState } from "./types/index.ts";
+import { close, enqueue, error } from "./withSafeResolvers/index.js";
+import { DeferredSource } from "./DeferredSource.js";
+import type { ReadableStream, ReadableStreamSafeResolver, InternalControllerState } from "./types/index.js";
 
 /**
  * Creates a `ReadableStream` together with a safe set of resolver-like
@@ -10,8 +10,8 @@ import type { ReadableStream, ReadableStreamSafeResolver, InternalControllerStat
  * but for streams: it produces both the stream and a small imperative
  * interface for pushing values or completing it.
  *
- * Once the stream is finalized—via `close()`, `error()`, or consumer
- * cancellation—any further calls to `enqueue()`, `close()`, or `error()`
+ * Once the stream is finalized (via `close()`, `error()`, or consumer
+ * cancellation), any further calls to `enqueue()`, `close()`, or `error()`
  * are silently ignored.
  *
  * @example ```js
@@ -21,7 +21,7 @@ import type { ReadableStream, ReadableStreamSafeResolver, InternalControllerStat
  * enqueue(2);
  * close();
  *
- * console.log(await Array.fromAsync(stream)); // → [1, 2]
+ * console.log(await Array.fromAsync(stream)); // -> [1, 2]
  * ```
  */
 export function withSafeResolvers<T = unknown>(): ReadableStreamSafeResolver<T> {

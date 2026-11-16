@@ -7,12 +7,12 @@
       "ESNext",
       "DOM",
       "DOM.Iterable",
+      "DOM.AsyncIterable"
     ],
     "skipLibCheck": true,
     "verbatimModuleSyntax": true,
     /* Bundler mode */
     "moduleResolution": "nodenext",
-    "allowImportingTsExtensions": true,
     "moduleDetection": "force",
     "emitDeclarationOnly": true,
     "declaration": true,

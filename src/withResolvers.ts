@@ -1,27 +1,28 @@
-import { close, enqueue, error } from "./withResolvers/index.ts";
-import { DeferredSource } from "./DeferredSource.ts";
-import type { ReadableStream, ReadableStreamResolver, InternalControllerState } from "./types/index.ts";
+import { close, enqueue, error } from "./withResolvers/index.js";
+import { DeferredSource } from "./DeferredSource.js";
+import type { ReadableStream, ReadableStreamResolver, InternalControllerState } from "./types/index.js";
 
 /**
- * Creates a `ReadableStream` together with a safe set of resolver-like
+ * Creates a `ReadableStream` together with a low-level set of resolver-like
  * methods for external control.
  *
  * This function is conceptually similar to `Promise.withResolvers()`,
  * but for streams: it produces both the stream and a small imperative
  * interface for pushing values or completing it.
  *
- * Once the stream is finalized—via `close()`, `error()`, or consumer
- * cancellation—any further calls to `enqueue()`, `close()`, or `error()`
- * are silently ignored.
+ * Unlike `withSafeResolvers()`, this function does not perform internal
+ * safety checks. Calling `enqueue()`, `close()`, or `error()` after the
+ * stream is finalized (via `close()`, `error()`, or consumer cancellation)
+ * may throw.
  *
  * @example ```js
- * const { stream, enqueue, close } = withSafeResolvers<number>();
+ * const { stream, enqueue, close } = withResolvers<number>();
  *
  * enqueue(1);
  * enqueue(2);
  * close();
  *
- * console.log(await Array.fromAsync(stream)); // → [1, 2]
+ * console.log(await Array.fromAsync(stream)); // -> [1, 2]
  * ```
  */
 export function withResolvers<T = unknown>(): ReadableStreamResolver<T> {

@@ -1,4 +1,4 @@
-import type { InternalControllerState } from "./types/InternalControllerState.ts";
+import type { InternalControllerState } from "./types/InternalControllerState.js";
 
 /**
  * Internal underlying source used by `withSafeResolvers()`.

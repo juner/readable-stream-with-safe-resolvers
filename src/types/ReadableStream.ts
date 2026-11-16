@@ -1,5 +1,5 @@
 /**
- * Helper type to ensure TypeScript correctly infers `ReadableStream<T>`.
- * Required for `withSafeResolvers<T>()` to return a properly typed stream.
+ * Helper type to ensure TypeScript correctly infers `ReadableStream<T>`
+ * including `AsyncIterable<T>` support without requiring `@types/node`.
  */
-export type ReadableStream<T> = import("stream/web").ReadableStream<T>;
+export type ReadableStream<T> = globalThis.ReadableStream<T> & AsyncIterable<T>;

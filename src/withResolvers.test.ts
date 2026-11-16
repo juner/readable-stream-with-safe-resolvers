@@ -1,5 +1,5 @@
 import { describe, test } from "vitest";
-import { withResolvers } from "./withResolvers.ts";
+import { withResolvers } from "./withResolvers.js";
 
 describe("simple use", () => {
   test.concurrent("enqueue and close", async ({ expect }) => {
